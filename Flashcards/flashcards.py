@@ -57,7 +57,7 @@ This process of questions and answer will repeat until the answer field if left 
 def return_to_menu(item):
     item = item.lower()
     if item == "m" or item == "menu" or item == "" or item == " ":
-        main()
+        return True
     return False
 
 
