@@ -26,20 +26,12 @@ def main():
 
 
 def get_questions():  # Imports the text, and then for each line in the text, adds that to list and returns list.
-    in_file = open("questions.txt", "r")
-    question_list = []
-    for line in in_file:
-        question_list.append(line.strip("\n"))
-    in_file.close()
+    question_list = list(open("questions.txt", "r"))
     return question_list
 
 
 def get_answers():  # Imports the text, and then for each line in the text, adds that to list and returns list.
-    in_file = open("answers.txt", "r")
-    answer_list = []
-    for line in in_file:
-        answer_list.append(line.strip("\n"))
-    in_file.close()
+    answer_list = list(open("answers.txt", "r"))
     return answer_list
 
 
@@ -78,7 +70,7 @@ def print_menu():
 
 
 def validate_answer(answer, question):
-    if answer not in question:
+    if answer != question[1]:
         return f"False! The correct answer is {question[1]}\n"
     return f"Correct! {answer}\n"
 
