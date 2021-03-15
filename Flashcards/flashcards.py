@@ -36,15 +36,17 @@ def get_answers():  # Imports the text, and then for each line in the text, adds
 
 
 def complete_question(question_list, answer_list):  # This is the function for completing the question.
-    question = generate_random_question(question_list, answer_list)
-    print(question[0])  # Prints the question
-    answer = str(input("Enter response here: ")).capitalize()  # Gets the user answer to above question
-    while not return_to_menu(answer):
-        check = validate_answer(answer, question)  # Checks if the answer is correct
-        print(check)  # Prints if the answer is correct or not
-        question = generate_random_question(question_list, answer_list)
-        print(question[0])  # Prints the question
-        answer = str(input("Enter response here: ")).capitalize()  # Gets the user answer to above question
+    questions_answers_list = generate_random_question(question_list, answer_list)
+    correct_answer = questions_answers_list[1]
+    question = questions_answers_list[0]  # List has both answer and question in it.
+    print(question)  # Prints the question from the question/answer list.
+    response = str(input("Enter response here: ")).capitalize()  # Gets the user answer to above question
+    while not return_to_menu(response):
+        answer = validate_answer(response, correct_answer)  # Checks if the answer is correct
+        print(answer)  # Prints if the answer is correct or not
+        questions_answers_list = generate_random_question(question_list, answer_list)
+        print(questions_answers_list[0])  # Prints the question
+        response = str(input("Enter response here: ")).capitalize()  # Gets the user answer to above question
 
 
 def print_instructions():
@@ -54,9 +56,9 @@ It will then print the result of your answer.
 This process of questions and answer will repeat until the answer field if left blank or you enter 'menu'.\n""")
 
 
-def return_to_menu(item):
-    item = item.lower()
-    if item == "m" or item == "menu" or item == "" or item == " ":
+def return_to_menu(response):
+    response = response.lower()
+    if response == "m" or response == "menu" or response == "" or response == " ":
         return True
     return False
 
@@ -69,10 +71,10 @@ def print_menu():
 (Q)uit\n""")
 
 
-def validate_answer(answer, question):
-    if answer != question[1]:
-        return f"False! The correct answer is {question[1]}\n"
-    return f"Correct! {answer}\n"
+def validate_answer(response, correct_answer):
+    if response != correct_answer:
+        return f"False! The correct answer is {correct_answer}\n"
+    return f"Correct! {correct_answer}\n"
 
 
 def validate_response(response):  # Checks if the response is in the list of responses
