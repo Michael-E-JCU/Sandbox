@@ -6,8 +6,6 @@ import random
 def main():
     print_menu()
     response = input("Enter response: ").lower()
-    while not validate_response(response):
-        response = str(input("Enter response: ")).lower()
     question_list = get_questions()
     answer_list = get_answers()
     while response != "q":
@@ -15,14 +13,18 @@ def main():
             print("In progress")
             print_menu()
             response = input("Enter response: ").lower()
-        if response == "p":
+        elif response == "p":
             complete_question(question_list, answer_list)
             print_menu()
             response = input("Enter response: ").lower()
-        if response == "i":
+        elif response == "i":
             print_instructions()
             print_menu()
             response = input("Enter response: ").lower()
+        else:
+            print("Invalid menu choice!")
+            print_menu()
+            response = str(input("Enter response: ")).lower()
 
 
 def get_questions():  # Imports the text, and then for each line in the text, adds that to list and returns list.
@@ -75,12 +77,6 @@ def validate_answer(response, correct_answer):
     if response != correct_answer:
         return f"False! The correct answer is {correct_answer}\n"
     return f"Correct! {correct_answer}\n"
-
-
-def validate_response(response):  # Checks if the response is in the list of responses
-    while response != "p" and response != "i" and response != "q" and response != "a":
-        return False
-    return True
 
 
 def generate_random_question(question_list, answer_list):  # Uses the len of the list to generate a random question
