@@ -70,7 +70,7 @@ def print_menu():
 (A)ccuracy
 (Q)uit\n""")
 
-
+# test
 def validate_answer(response, correct_answer):
     if response != correct_answer:
         return f"False! The correct answer is {correct_answer}\n"
