@@ -2,6 +2,11 @@
 
 import random
 
+INSTRUCTIONS = """INSTRUCTIONSSSSSSSSSS!
+You will be given a question and asked for an answer.. 
+It will then print the result of your answer.
+This process of questions and answer will repeat until the answer field if left blank or you enter 'menu'.\n"""
+
 
 def main():
     print_menu()
@@ -18,7 +23,7 @@ def main():
             print_menu()
             response = input("Enter response: ").lower()
         elif response == "i":
-            print_instructions()
+            print(INSTRUCTIONS)
             print_menu()
             response = input("Enter response: ").lower()
         else:
@@ -49,13 +54,6 @@ def complete_question(question_list, answer_list):  # This is the function for c
         questions_answers_list = generate_random_question(question_list, answer_list)
         print(questions_answers_list[0])  # Prints the question
         response = str(input("Enter response here: ")).capitalize()  # Gets the user answer to above question
-
-
-def print_instructions():
-    print("""INSTRUCTIONSSSSSSSSSS!
-You will be given a question and asked for an answer.. 
-It will then print the result of your answer.
-This process of questions and answer will repeat until the answer field if left blank or you enter 'menu'.\n""")
 
 
 def return_to_menu(response):
